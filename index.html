@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PERSONALIZAÇÃO 1: Título atualizado para Guilherme -->
+    <title>Guilherme | Engenharia Mecânica & Desenvolvimento de Sistemas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Chakra Petch', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        /* PERSONALIZAÇÃO 2: Você pode alterar as cores principais do tema aqui */
+                        blueprint: {
+                            950: '#06101e',
+                            900: '#0a192f',
+                            800: '#112240',
+                            700: '#1d3557',
+                        },
+                        industrial: {
+                            500: '#f97316',
+                            600: '#ea580c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Grade técnica estilo Blueprint / CAD */
+        .blueprint-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+        }
+        .light-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+        }
+        html { scroll-behavior: smooth; }
+        @keyframes spin-gear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spin-gear-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        .gear-cw {
+            animation: spin-gear var(--gear-duration, 6s) linear infinite;
+            transform-origin: center;
+        }
+        .gear-ccw {
+            animation: spin-gear-reverse var(--gear-duration, 6s) linear infinite;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-blueprint-950 dark:text-slate-200 transition-colors duration-300 light-grid dark:blueprint-grid">
+
+    <!-- MENU DE NAVEGAÇÃO -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/85 dark:bg-blueprint-900/85 border-b border-slate-200 dark:border-sky-900/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Identificação -->
+                <a href="#inicio" class="flex items-center gap-2 font-display font-bold text-lg tracking-wider text-slate-900 dark:text-white">
+                    <span class="w-8 h-8 rounded bg-industrial-500 text-white flex items-center justify-center font-mono text-sm">ENG</span>
+                    <!-- PERSONALIZAÇÃO 3: Identificação no menu -->
+                    <span>GUILHERME<span class="text-industrial-500">.MEC</span></span>
+                </a>
+
+                <!-- Links Desktop -->
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-industrial-500 transition">Início</a>
+                    <a href="#trajetoria" class="hover:text-industrial-500 transition">Trajetória</a>
+                    <a href="#profissao" class="hover:text-industrial-500 transition">Eng. Mecânica</a>
+                    <a href="#objetivos" class="hover:text-industrial-500 transition">Objetivos</a>
+                    <a href="#habilidades" class="hover:text-industrial-500 transition">Habilidades</a>
+                    <a href="#tecnologia" class="hover:text-industrial-500 transition">Tech & Indústria</a>
+                    <a href="#simulador" class="text-industrial-500 font-semibold hover:underline">Simulador</a>
+                </nav>
+
+                <!-- Botões de Ação (Tema + Mobile Menu) -->
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Alternar tema" class="p-2 rounded-lg border border-slate-300 dark:border-sky-800 hover:bg-slate-200 dark:hover:bg-blueprint-800 transition text-sm font-mono flex items-center gap-1.5">
+                        <span id="theme-icon">☀️</span>
+                        <span id="theme-label" class="hidden sm:inline text-xs">Modo Claro</span>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg border border-slate-300 dark:border-sky-800">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-blueprint-900 border-b border-slate-200 dark:border-sky-900 px-4 py-4 space-y-2 text-sm">
+            <a href="#inicio" class="block py-1.5 hover:text-industrial-500">1. Apresentação Pessoal</a>
+            <a href="#trajetoria" class="block py-1.5 hover:text-industrial-500">2. Trajetória Acadêmica</a>
+            <a href="#profissao" class="block py-1.5 hover:text-industrial-500">3. Profissão Desejada</a>
+            <a href="#objetivos" class="block py-1.5 hover:text-industrial-500">4. Objetivos Profissionais</a>
+            <a href="#habilidades" class="block py-1.5 hover:text-industrial-500">5. Habilidades e Interesses</a>
+            <a href="#tecnologia" class="block py-1.5 hover:text-industrial-500">6. Tecnologia na Profissão</a>
+            <a href="#simulador" class="block py-1.5 text-industrial-500 font-semibold">⚙️ Laboratório Interativo</a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- 1. APRESENTAÇÃO PESSOAL -->
+        <section id="inicio" class="pt-6 grid md:grid-cols-12 gap-10 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-industrial-500/10 border border-industrial-500/30 text-industrial-600 dark:text-industrial-500 font-mono text-xs">
+                    <span>[ PROJETO DE CARREIRA // REV. 2026 ]</span>
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
+                    Olá, eu sou <span class="text-industrial-500">Guilherme</span>.
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Atualmente estudante de <strong>Desenvolvimento de Sistemas</strong>, apaixonado por entender como máquinas funcionam por dentro, resolver problemas estruturais e unir a lógica da programação com o mundo físico da <strong>Engenharia Mecânica</strong>.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="#profissao" class="px-5 py-2.5 rounded-lg bg-industrial-500 hover:bg-industrial-600 text-white font-medium transition shadow-lg shadow-industrial-500/20">
+                        Minha Meta: Eng. Mecânica
+                    </a>
+                    <a href="#simulador" class="px-5 py-2.5 rounded-lg border border-slate-300 dark:border-sky-700 hover:border-industrial-500 transition font-medium">
+                        Testar Simulador Mecânico ⚙️
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cartão Técnico de Identificação -->
+            <div class="md:col-span-5 bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/80 rounded-xl p-6 shadow-xl relative overflow-hidden">
+                <div class="flex justify-between items-center border-b border-slate-200 dark:border-sky-800 pb-3 mb-4 font-mono text-xs text-slate-500 dark:text-sky-400">
+                    <span>FICHA_TÉCNICA_GUILHERME.CAD</span>
+                    <span>ESCALA 1:1</span>
+                </div>
+                <ul class="space-y-3 text-sm font-mono">
+                    <li class="flex justify-between"><span class="text-slate-500">NOME:</span> <span class="font-semibold">Guilherme</span></li>
+                    <li class="flex justify-between"><span class="text-slate-500">FORMAÇÃO ATUAL:</span> <span class="font-semibold">Desenv. de Sistemas</span></li>
+                    <li class="flex justify-between"><span class="text-slate-500">ÁREA ALVO:</span> <span class="text-industrial-500 font-semibold">Engenharia Mecânica</span></li>
+                    <li class="flex justify-between"><span class="text-slate-500">INTERESSES:</span> <span>Automação, CAD, Motores</span></li>
+                    <li class="flex justify-between"><span class="text-slate-500">LOCALIZAÇÃO:</span> <span>Brasil</span></li>
+                    <li class="flex justify-between"><span class="text-slate-500">STATUS:</span> <span class="text-emerald-500">● Em Evolução Contínua</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. TRAJETÓRIA ACADÊMICA -->
+        <section id="trajetoria" class="space-y-8">
+            <div class="border-l-4 border-industrial-500 pl-4">
+                <span class="font-mono text-xs text-industrial-500 uppercase tracking-widest">02 // Histórico</span>
+                <h2 class="font-display text-3xl font-bold text-slate-900 dark:text-white">Trajetória Acadêmica</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-blueprint-900/90 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="px-2.5 py-1 text-xs font-mono rounded bg-sky-500/10 text-sky-600 dark:text-sky-400">Em Andamento</span>
+                        <span class="font-mono text-xs text-slate-500">Ensino Técnico / Médio</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white">Curso Técnico em Desenvolvimento de Sistemas</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Durante o curso, desenvolvi uma base sólida em lógica de programação, algoritmos, desenvolvimento web (HTML, CSS, JavaScript), banco de dados e pensamento estruturado para resolução de problemas complexos.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-blueprint-900/90 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="px-2.5 py-1 text-xs font-mono rounded bg-industrial-500/10 text-industrial-500">Aprendizados Chave</span>
+                        <span class="font-mono text-xs text-slate-500">Experiências</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 dark:text-white">Projetos Práticos & Base Exata</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Participação em projetos de software, trabalho em equipe com metodologias ágeis, versionamento de código com Git/GitHub e aprofundamento em matemática e física aplicada, preparando o terreno para o ensino superior em Engenharia.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PROFISSÃO DESEJADA -->
+        <section id="profissao" class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800 rounded-2xl p-8 md:p-10 shadow-lg space-y-6">
+            <div class="border-l-4 border-industrial-500 pl-4">
+                <span class="font-mono text-xs text-industrial-500 uppercase tracking-widest">03 // Vocação</span>
+                <h2 class="font-display text-3xl font-bold text-slate-900 dark:text-white">Profissão Desejada: Engenharia Mecânica</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                <div class="md:col-span-2 space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p>
+                        A <strong>Engenharia Mecânica</strong> é a área responsável por projetar, analisar, fabricar e manter sistemas mecânicos — desde componentes microscópicos até turbinas, veículos, robôs industriais e sistemas de geração de energia.
+                    </p>
+                    <p>
+                        <strong>Por que escolhi essa carreira?</strong> Sempre tive curiosidade em entender como as forças físicas transformam energia em movimento útil. Unir minha formação inicial em <em>Desenvolvimento de Sistemas</em> com a <em>Engenharia Mecânica</em> me permitirá atuar na vanguarda da mecatrônica, automação industrial e projetos assistidos por computador.
+                    </p>
+                </div>
+                <div class="bg-slate-100 dark:bg-blueprint-950 p-5 rounded-xl border border-slate-200 dark:border-sky-900 space-y-3">
+                    <h4 class="font-display font-bold text-sm uppercase text-industrial-500">Áreas de Atuação de Interesse</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>⚙️ Projetos Mecânicos e CAD/CAE</li>
+                        <li>🏭 Automação e Robótica Industrial</li>
+                        <li>🚗 Engenharia Automotiva e Mobilidade</li>
+                        <li>⚡ Sistemas Térmicos e Energia Renovável</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. OBJETIVOS PROFISSIONAIS (COM FILTRO INTERATIVO JS) -->
+        <section id="objetivos" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div class="border-l-4 border-industrial-500 pl-4">
+                    <span class="font-mono text-xs text-industrial-500 uppercase tracking-widest">04 // Roadmap</span>
+                    <h2 class="font-display text-3xl font-bold text-slate-900 dark:text-white">Objetivos Profissionais</h2>
+                </div>
+                <!-- Botões de Filtro Interativo -->
+                <div class="flex flex-wrap gap-2 font-mono text-xs">
+                    <button onclick="filtrarObjetivos('todos')" class="obj-btn active px-3 py-1.5 rounded bg-industrial-500 text-white">Todos</button>
+                    <button onclick="filtrarObjetivos('curto')" class="obj-btn px-3 py-1.5 rounded bg-slate-200 dark:bg-blueprint-800 hover:bg-industrial-500/20">Curto Prazo</button>
+                    <button onclick="filtrarObjetivos('medio')" class="obj-btn px-3 py-1.5 rounded bg-slate-200 dark:bg-blueprint-800 hover:bg-industrial-500/20">Médio Prazo</button>
+                    <button onclick="filtrarObjetivos('longo')" class="obj-btn px-3 py-1.5 rounded bg-slate-200 dark:bg-blueprint-800 hover:bg-industrial-500/20">Longo Prazo</button>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="lista-objetivos">
+                <div class="objetivo-card curto bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-2">
+                    <span class="font-mono text-xs text-industrial-500">CURTO PRAZO (1 - 2 ANOS)</span>
+                    <h3 class="font-display text-lg font-bold">Concluir DS & Ingressar na Faculdade</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Finalizar o curso técnico com excelência, conquistar aprovação no vestibular/ENEM e iniciar o bacharelado em Engenharia Mecânica.</p>
+                </div>
+
+                <div class="objetivo-card medio bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-2">
+                    <span class="font-mono text-xs text-sky-400">MÉDIO PRAZO (2 - 4 ANOS)</span>
+                    <h3 class="font-display text-lg font-bold">Dominar Softwares CAD & Estágio</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Aprender SolidWorks, AutoCAD e Python para engenharia, além de ingressar em equipes de competição (como Baja SAE ou Fórmula SAE) e estágios na indústria.</p>
+                </div>
+
+                <div class="objetivo-card longo bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-2">
+                    <span class="font-mono text-xs text-emerald-400">LONGO PRAZO (5+ ANOS)</span>
+                    <h3 class="font-display text-lg font-bold">Engenheiro de Projetos & Inovação</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Atuar como Engenheiro Mecânico liderando projetos de automação, máquinas inteligentes e soluções sustentáveis de alta eficiência.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. HABILIDADES E INTERESSES -->
+        <section id="habilidades" class="space-y-8">
+            <div class="border-l-4 border-industrial-500 pl-4">
+                <span class="font-mono text-xs text-industrial-500 uppercase tracking-widest">05 // Competências</span>
+                <h2 class="font-display text-3xl font-bold text-slate-900 dark:text-white">Habilidades e Interesses</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Habilidades Técnicas e Comportamentais -->
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-4">
+                    <h3 class="font-display text-xl font-bold">Competências Desenvolvidas</h3>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <div class="flex justify-between font-mono mb-1"><span>Lógica de Programação & Algoritmos</span><span>85%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-blueprint-950 h-2 rounded-full"><div class="bg-industrial-500 h-2 rounded-full" style="width: 85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-mono mb-1"><span>Matemática & Física Aplicada</span><span>80%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-blueprint-950 h-2 rounded-full"><div class="bg-sky-500 h-2 rounded-full" style="width: 80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-mono mb-1"><span>Desenvolvimento Web (HTML/CSS/JS)</span><span>75%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-blueprint-950 h-2 rounded-full"><div class="bg-industrial-500 h-2 rounded-full" style="width: 75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-mono mb-1"><span>Resolução de Problemas & Trabalho em Equipe</span><span>90%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-blueprint-950 h-2 rounded-full"><div class="bg-emerald-500 h-2 rounded-full" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interesses Pessoais -->
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-6 rounded-xl space-y-4">
+                    <h3 class="font-display text-xl font-bold">Assuntos que Gosto de Estudar</h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">🔧 Mecânica Automotiva</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">📐 Modelagem 3D & Impressão 3D</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">🤖 Robótica & Arduino</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">⚡ Termodinâmica</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">💻 Automação com Python</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-blueprint-800 border border-slate-200 dark:border-sky-700 text-sm">✈️ Aeronáutica & Fluidos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. TECNOLOGIA NA PROFISSÃO -->
+        <section id="tecnologia" class="space-y-8">
+            <div class="border-l-4 border-industrial-500 pl-4">
+                <span class="font-mono text-xs text-industrial-500 uppercase tracking-widest">06 // Sinergia</span>
+                <h2 class="font-display text-3xl font-bold text-slate-900 dark:text-white">A Tecnologia na Engenharia Mecânica</h2>
+            </div>
+
+            <p class="text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+                Mesmo mudando o foco principal para a Engenharia Mecânica, minha base em Desenvolvimento de Sistemas é um grande diferencial competitivo na era da <strong>Indústria 4.0</strong>:
+            </p>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-5 rounded-xl space-y-2">
+                    <div class="text-2xl">🖥️</div>
+                    <h3 class="font-display font-bold">CAD / CAE & Simulação</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Softwares de elementos finitos (FEA) e dinâmica de fluidos (CFD) testam peças virtualmente antes da fabricação.</p>
+                </div>
+
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-5 rounded-xl space-y-2">
+                    <div class="text-2xl">📡</div>
+                    <h3 class="font-display font-bold">IoT & Manutenção Preditiva</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Sensores conectados enviam dados de vibração e temperatura em tempo real para prever falhas em máquinas.</p>
+                </div>
+
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-5 rounded-xl space-y-2">
+                    <div class="text-2xl">🌐</div>
+                    <h3 class="font-display font-bold">Gêmeos Digitais</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Réplicas virtuais sincronizadas com sistemas físicos permitem otimizar linhas de produção inteiras.</p>
+                </div>
+
+                <div class="bg-white dark:bg-blueprint-900 border border-slate-200 dark:border-sky-800/60 p-5 rounded-xl space-y-2">
+                    <div class="text-2xl">🐍</div>
+                    <h3 class="font-display font-bold">Programação & Automação</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Scripts em Python, C++ e CLPs automatizam cálculos estruturais complexos e controlam braços robóticos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FUNCIONALIDADE INTERATIVA EXTRA: SIMULADOR MECÂNICO DE TORQUE E POTÊNCIA -->
+        <section id="simulador" class="bg-white dark:bg-blueprint-900 border-2 border-industrial-500/40 rounded-2xl p-6 md:p-8 shadow-xl">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-200 dark:border-sky-800 pb-4 mb-6">
+                <div>
+                    <span class="font-mono text-xs text-industrial-500">LABORATÓRIO INTERATIVO // JAVASCRIPT</span>
+                    <h2 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Simulador de Potência Mecânica (Torque × RPM)</h2>
+                </div>
+                <span class="font-mono text-xs px-3 py-1 rounded bg-slate-100 dark:bg-blueprint-950 border border-slate-300 dark:border-sky-800">Fórmula: P = (τ × ω)</span>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+                <!-- Controles -->
+                <div class="md:col-span-7 space-y-5">
+                    <div>
+                        <div class="flex justify-between font-mono text-sm mb-1">
+                            <label for="torque-input">Torque do Motor (N·m):</label>
+                            <span id="torque-val" class="text-industrial-500 font-bold">150 N·m</span>
+                        </div>
+                        <input type="range" id="torque-input" min="20" max="600" value="150" class="w-full accent-orange-500 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between font-mono text-sm mb-1">
+                            <label for="rpm-input">Rotação (RPM):</label>
+                            <span id="rpm-val" class="text-sky-400 font-bold">3000 RPM</span>
+                        </div>
+                        <input type="range" id="rpm-input" min="500" max="8000" step="100" value="3000" class="w-full accent-sky-500 cursor-pointer">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-blueprint-950 border border-slate-200 dark:border-sky-900">
+                            <span class="block font-mono text-xs text-slate-500">POTÊNCIA (kW)</span>
+                            <span id="kw-output" class="font-display text-2xl font-bold text-slate-900 dark:text-white">47.1 kW</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-blueprint-950 border border-slate-200 dark:border-sky-900">
+                            <span class="block font-mono text-xs text-slate-500">CAVALOS (CV)</span>
+                            <span id="cv-output" class="font-display text-2xl font-bold text-industrial-500">64.1 cv</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animação Visual de Engrenagens -->
+                <div class="md:col-span-5 flex flex-col items-center justify-center bg-slate-100 dark:bg-blueprint-950 rounded-xl p-6 border border-slate-200 dark:border-sky-900">
+                    <svg id="gear-svg" width="160" height="120" viewBox="0 0 160 120" class="overflow-visible">
+                        <!-- Engrenagem Motora -->
+                        <g class="gear-cw" style="transform-origin: 55px 60px;">
+                            <circle cx="55" cy="60" r="28" fill="none" stroke="#f97316" stroke-width="8" stroke-dasharray="10 6"/>
+                            <circle cx="55" cy="60" r="18" fill="none" stroke="#f97316" stroke-width="3"/>
+                            <circle cx="55" cy="60" r="5" fill="#f97316"/>
+                        </g>
+                        <!-- Engrenagem Movida -->
+                        <g class="gear-ccw" style="transform-origin: 112px 60px;">
+                            <circle cx="112" cy="60" r="20" fill="none" stroke="#38bdf8" stroke-width="7" stroke-dasharray="8 5"/>
+                            <circle cx="112" cy="60" r="12" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                            <circle cx="112" cy="60" r="4" fill="#38bdf8"/>
+                        </g>
+                    </svg>
+                    <span class="font-mono text-xs text-slate-500 mt-3">Transmissão Mecânica Ativa</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="border-t border-slate-200 dark:border-sky-900/60 py-8 mt-16 text-center text-sm text-slate-500 font-mono">
+        <p>Portfólio de Guilherme // Desenvolvido com HTML, CSS & JavaScript</p>
+        <p class="text-xs mt-1">Rumo à Engenharia Mecânica • Hospedado via GitHub Pages • 2026</p>
+    </footer>
+
+    <!-- JAVASCRIPT INTERATIVO -->
+    <script>
+        // 1. Alternância de Tema Claro / Escuro
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeLabel = document.getElementById('theme-label');
+        const htmlEl = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            const isDark = htmlEl.classList.contains('dark');
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
+            themeLabel.textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
+        });
+
+        // 2. Menu Responsivo Mobile
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. Filtro Interativo de Objetivos
+        function filtrarObjetivos(prazo) {
+            const cards = document.querySelectorAll('.objetivo-card');
+            const btns = document.querySelectorAll('.obj-btn');
+
+            btns.forEach(b => {
+                b.classList.remove('bg-industrial-500', 'text-white');
+                b.classList.add('bg-slate-200', 'dark:bg-blueprint-800');
+            });
+            event.target.classList.remove('bg-slate-200', 'dark:bg-blueprint-800');
+            event.target.classList.add('bg-industrial-500', 'text-white');
+
+            cards.forEach(card => {
+                if (prazo === 'todos' || card.classList.contains(prazo)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 4. Simulador de Torque, RPM e Potência
+        const torqueInput = document.getElementById('torque-input');
+        const rpmInput = document.getElementById('rpm-input');
+        const torqueVal = document.getElementById('torque-val');
+        const rpmVal = document.getElementById('rpm-val');
+        const kwOutput = document.getElementById('kw-output');
+        const cvOutput = document.getElementById('cv-output');
+        const gearSvg = document.getElementById('gear-svg');
+
+        function calcularPotencia() {
+            const torque = parseFloat(torqueInput.value);
+            const rpm = parseFloat(rpmInput.value);
+
+            torqueVal.textContent = `${torque} N·m`;
+            rpmVal.textContent = `${rpm} RPM`;
+
+            // Potência (kW) = (Torque * RPM) / 9549
+            const kw = (torque * rpm) / 9549;
+            // 1 kW = 1.35962 cv
+            const cv = kw * 1.35962;
+
+            kwOutput.textContent = `${kw.toFixed(1)} kW`;
+            cvOutput.textContent = `${cv.toFixed(1)} cv`;
+
+            // Ajusta velocidade visual das engrenagens conforme RPM
+            const duration = Math.max(0.4, 12000 / rpm);
+            gearSvg.style.setProperty('--gear-duration', `${duration}s`);
+        }
+
+        torqueInput.addEventListener('input', calcularPotencia);
+        rpmInput.addEventListener('input', calcularPotencia);
+        calcularPotencia();
+    </script>
+</body>
+</html>

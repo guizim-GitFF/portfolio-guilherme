@@ -31,11 +31,3 @@ O site foi desenvolvido para apresentar minha jornada acadêmica e metas de carr
 * **CSS3 & Tailwind CSS** — Estilização, layout em grade técnica e responsividade[cite: 6].
 * **JavaScript** — Interatividade, manipulação do DOM e cálculos físicos[cite: 5, 6].
 * **Git & GitHub Pages** — Versionamento e hospedagem gratuita[cite: 5, 6].
-
----
-
-## 🌐 Como Acessar o Site Online
-
-Após ativar o **GitHub Pages** nas configurações deste repositório (`Settings > Pages > Branch: main`), o projeto ficará disponível no endereço:
-
-`https://seu-usuario.github.io/nome-do-repositorio/` *(substitua pelo seu usuário e nome do repositório)*
